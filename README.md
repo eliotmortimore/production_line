@@ -191,4 +191,4 @@ Feel free to modify, extend, and share.
 
 **Eliot Mortimore**
 Moscow, Idaho
-[github.com/<your-username>](https://github.com/<your-username>)
+[github.com/eliotmortimore](https://github.com/eliotmortimore)
