@@ -63,8 +63,12 @@ def render():
     buffing_box = make_box("Buffing", buffing_queue , width=30)
     completed_box = make_counter_box("Completed", completed, width=30)
                        
-    print(f"\nTurn: {turn}")
-    print(f"Materials supplied per turn: {materials}\n")
+    print(f"\nTurn: {turn}\n")
+    print(f"\nMin/Max:\n")
+    print(f"Forming : {buffing_min}/{buffing_max}")
+    print(f"CNC: {cnc_min}/{cnc_max}")
+    print(f"Buffing: {buffing_min}/{buffing_max}\n")
+    print(f"\nMaterials supplied per turn: {materials}\n")
     for lines in zip(forming_box, cnc_box, buffing_box, completed_box):
         print("  ->  ".join(lines))
 
