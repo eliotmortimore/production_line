@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Production Line Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Production Line Simulator</h1>
+        </header>
+
+        <div class="stats-bar">
+            <div class="turn-counter">Turn: <span id="turn-count">0</span></div>
+            <div class="materials-info">Materials supplied per turn: <span id="materials-per-turn">30</span></div>
+        </div>
+
+        <div class="stations-container">
+            <!-- Forming Station -->
+            <div class="station" id="forming-station">
+                <div class="station-header">Forming</div>
+                <div class="station-queue">
+                    <div class="queue-label">Queue:</div>
+                    <div class="queue-value" id="forming-queue">0</div>
+                </div>
+                <div class="station-production">
+                    <div class="production-label">Production:</div>
+                    <div class="production-value" id="forming-production">0</div>
+                </div>
+                <div class="station-range">
+                    <div class="range-label">Min/Max:</div>
+                    <div class="range-value" id="forming-range">28/30</div>
+                </div>
+            </div>
+
+            <!-- CNC Station -->
+            <div class="station arrow">→</div>
+            <div class="station" id="cnc-station">
+                <div class="station-header">CNC</div>
+                <div class="station-queue">
+                    <div class="queue-label">Queue:</div>
+                    <div class="queue-value" id="cnc-queue">0</div>
+                </div>
+                <div class="station-production">
+                    <div class="production-label">Production:</div>
+                    <div class="production-value" id="cnc-production">0</div>
+                </div>
+                <div class="station-range">
+                    <div class="range-label">Min/Max:</div>
+                    <div class="range-value" id="cnc-range">28/30</div>
+                </div>
+            </div>
+
+            <!-- Buffing Station -->
+            <div class="station arrow">→</div>
+            <div class="station" id="buffing-station">
+                <div class="station-header">Buffing</div>
+                <div class="station-queue">
+                    <div class="queue-label">Queue:</div>
+                    <div class="queue-value" id="buffing-queue">0</div>
+                </div>
+                <div class="station-production">
+                    <div class="production-label">Production:</div>
+                    <div class="production-value" id="buffing-production">0</div>
+                </div>
+                <div class="station-range">
+                    <div class="range-label">Min/Max:</div>
+                    <div class="range-value" id="buffing-range">28/29</div>
+                </div>
+            </div>
+
+            <!-- Completed Station -->
+            <div class="station arrow">→</div>
+            <div class="station" id="completed-station">
+                <div class="station-header">Completed</div>
+                <div class="station-queue">
+                    <div class="queue-label">Total:</div>
+                    <div class="queue-value" id="completed-count">0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="run-btn" class="control-btn">Run (Enter)</button>
+            <div class="running-indicator"></div>
+            <button id="show-btn" class="control-btn">Show (S)</button>
+            <button id="reset-btn" class="control-btn">Reset (RS)</button>
+            <button id="settings-btn" class="control-btn">Settings (ST)</button>
+        </div>
+
+        <!-- Settings Modal -->
+        <div id="settings-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">×</span>
+                <h2>Settings</h2>
+                <div class="settings-section">
+                    <h3>Materials per Turn</h3>
+                    <div class="setting-row">
+                        <label for="materials-input">Materials:</label>
+                        <input type="number" id="materials-input" min="1" value="30">
+                        <button id="save-materials">Save</button>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>Station Settings</h3>
+                    <div class="setting-row">
+                        <label for="forming-min">Forming Min:</label>
+                        <input type="number" id="forming-min" min="1" value="28">
+                        <label for="forming-max">Max:</label>
+                        <input type="number" id="forming-max" min="1" value="30">
+                        <button id="save-forming">Save</button>
+                    </div>
+                    
+                    <div class="setting-row">
+                        <label for="cnc-min">CNC Min:</label>
+                        <input type="number" id="cnc-min" min="1" value="28">
+                        <label for="cnc-max">Max:</label>
+                        <input type="number" id="cnc-max" min="1" value="30">
+                        <button id="save-cnc">Save</button>
+                    </div>
+                    
+                    <div class="setting-row">
+                        <label for="buffing-min">Buffing Min:</label>
+                        <input type="number" id="buffing-min" min="1" value="28">
+                        <label for="buffing-max">Max:</label>
+                        <input type="number" id="buffing-max" min="1" value="29">
+                        <button id="save-buffing">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

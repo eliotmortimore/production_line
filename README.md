@@ -1,194 +1,96 @@
-Here’s a rewritten **`README.md`** that assumes both `production_line.py` and `variables.py` live together in the same GitHub repository (not separate folders). It’s written in standard GitHub Markdown formatting, clean and professional.
+# Production Line Simulator
 
----
+A web-based manufacturing simulation that models a three-stage production line process. This interactive simulator demonstrates how materials move through different manufacturing stages with random variations in production output.
 
-```markdown
-# 🏭 Production Line Simulation
+## Demo
 
-A Python-based terminal simulation of a simple **multi-stage production line**.  
-Each “turn” (or cycle) moves items through the stages of a manufacturing process:
+![Production Line Simulator Demo](demo.gif)
 
-```
+## Features
 
-Materials  →  Forming  →  CNC  →  Buffing  →  Completed
+- **Three-Stage Production Line**: Materials progress through Forming, CNC, and Buffing stations
+- **Random Production Variations**: Each station has configurable min/max output ranges
+- **Real-time Visualization**: See materials move through each stage of the production process
+- **Interactive Controls**: Run, show, reset, and adjust settings through an intuitive UI
+- **Responsive Design**: Works on desktop and mobile devices
+- **Visual Feedback**: Animations and highlighting show active processing stations
 
-```
+## How It Works
 
-Each station has its own configurable **minimum and maximum output**, and a set number of new materials is added to the line every turn.  
-This lets you visualize flow, bottlenecks, and throughput in a compact, terminal-based dashboard.
+The simulation models a manufacturing process where:
 
----
+1. **Materials Supply**: 30 raw materials are supplied per turn (configurable)
+2. **Forming Station**: Processes materials with random output between 28-30 units
+3. **CNC Station**: Processes formed parts with random output between 28-30 units
+4. **Buffing Station**: Finishes CNC parts with random output between 28-29 units
+5. **Completed Products**: Finished items are counted in the completed total
 
-## 📂 Repository Structure
+Each station has a queue where materials wait to be processed. The random variations simulate real-world factors that might affect production efficiency.
 
-```
+## Technologies Used
 
-production-line-simulator/
-├── production_line.py   # Main simulation logic and CLI
-├── variables.py         # Global state and configuration values
-└── README.md            # Project documentation
+- **HTML5**: Structure and content
+- **CSS3**: Styling and animations
+- **JavaScript**: Simulation logic and interactivity
+- **No external dependencies**: Pure web technologies only
 
-````
+## Getting Started
 
----
+1. Clone or download this repository
+2. Open `index.html` in any modern web browser
+3. Start the simulation by clicking "Run" or pressing Enter
 
-## ⚙️ Requirements
+## Controls
 
-- Python **3.10+**  
-- macOS, Linux, or Windows terminal with **UTF-8** support (for box-drawing characters)  
-- No external dependencies — uses only built-in modules (`os`, `random`).
+- **Run (Enter)**: Advance the simulation by one turn
+- **Show (S)**: Refresh the display without advancing
+- **Reset (RS)**: Reset the simulation to initial state
+- **Settings (ST)**: Open settings to adjust parameters
 
----
+## Customization
 
-## ▶️ Running the Simulation
+You can adjust the following parameters through the settings menu:
 
-1. Clone the repository:
+- **Materials per Turn**: Change how many raw materials are supplied each turn
+- **Forming Station**: Adjust min/max production range
+- **CNC Station**: Adjust min/max production range
+- **Buffing Station**: Adjust min/max production range
 
-   ```bash
-   git clone https://github.com/<your-username>/production-line-simulator.git
-   cd production-line-simulator
-````
-
-2. Run the simulation:
-
-   ```bash
-   python3 production_line.py
-   ```
-
-3. The terminal will display the current state of the production line.
-   You can then control the simulation interactively using simple commands.
-
----
-
-## ⌨️ Commands
-
-| Command      | Alias | Description                                                    |
-| ------------ | ----- | -------------------------------------------------------------- |
-| **Enter**    | —     | Advance the production line by one turn                        |
-| **run**      | `r`   | Same as pressing Enter — runs one cycle                        |
-| **show**     | `s`   | Redraws the current system state                               |
-| **reset**    | `rs`  | Resets all queues, counters, and totals                        |
-| **settings** | `st`  | Opens configuration menu (materials per turn, station min/max) |
-| **quit**     | `q`   | Exits the simulation                                           |
-
----
-
-## ⚙️ Settings Menu
-
-When you type `settings` (or `st`), a configuration interface opens:
+## File Structure
 
 ```
---- SETTINGS MENU ---
-1) Adjust materials per turn
-2) Adjust station min/max outputs
-3) Back
+production_line/
+├── index.html          # Main HTML structure
+├── styles.css          # All styling and animations
+├── script.js           # Simulation logic and interactivity
+└── README.md           # This file
 ```
 
-### Adjusting Materials per Turn
+## Browser Support
 
-Sets how many new units of raw material enter the system each cycle.
+Works in all modern browsers that support:
+- ES6 JavaScript
+- CSS3 animations and flexbox
+- HTML5
 
-### Adjusting Station Min/Max
+Tested in:
+- Chrome
+- Firefox
+- Safari
+- Edge
 
-Lets you pick a station (`Forming`, `CNC`, or `Buffing`) and set its random output range.
+## Development
 
-Example:
+To modify the simulator:
 
-```
-Choose station to adjust:
-1) Forming
-2) CNC
-3) Buffing
+1. Edit `index.html` to change the structure
+2. Modify `styles.css` to change appearance
+3. Update `script.js` to change simulation logic
 
-Select a station (1-3): 2
-Adjusting CNC (current min/max: 32/35)
-Enter new MIN for CNC: 20
-Enter new MAX for CNC: 28
-CNC range set to 20–28.
-```
+## License
 
----
+This project is open source and available under the MIT License.
 
-## 🧮 Simulation Logic
+## Acknowledgments
 
-Each turn proceeds as follows:
-
-1. **Material Input**
-   A fixed number of materials (default: 30) are added to the forming queue.
-
-2. **Forming → CNC → Buffing → Completed**
-   Each station processes items based on its random min/max output.
-   Processed items move to the next queue; unfinished ones remain waiting.
-
-3. **Turn Counter**
-   Increments each time the system advances.
-
----
-
-## 📊 Example Output
-
-```
-Turn: 12
-Materials supplied per turn: 30
-
-┌────────────────────────────┐  ->  ┌────────────────────────────┐  ->  ┌────────────────────────────┐  ->  ┌────────────────────────────┐
-│Queue:  15                  │      │Queue:   8                  │      │Queue:   2                  │      │Completed:  210             │
-│          Forming           │      │           CNC              │      │          Buffing           │      │        Completed           │
-└────────────────────────────┘      └────────────────────────────┘      └────────────────────────────┘      └────────────────────────────┘
-```
-
-Press **Enter** to advance one cycle, or type any command from the list above.
-
----
-
-## 🧾 Configuration (`variables.py`)
-
-`variables.py` defines all global state and configuration values:
-
-```python
-# Materials added each cycle
-materials = 30
-
-# Queues and totals
-forming_queue = 0
-forming_prod = 0
-cnc_queue = 0
-cnc_prod = 0
-buffing_queue = 0
-buffing_prod = 0
-completed = 0
-turn = 0
-
-# Output ranges for each station
-forming_min = 29
-forming_max = 30
-cnc_min = 32
-cnc_max = 35
-buffing_min = 28
-buffing_max = 29
-```
-
-These values are imported directly into `production_line.py` and can be adjusted at runtime through the **Settings Menu**.
-
----
-
-## 🧠 Notes
-
-* Each station’s random output simulates variability in production rate.
-* You can add new steps (e.g., *Painting*, *Packaging*) by following the same queue→process→output pattern.
-* The display uses Unicode box-drawing characters; if they appear misaligned, ensure your terminal font supports them.
-
----
-
-## 🏁 License
-
-This project is open-source under the **MIT License**.
-Feel free to modify, extend, and share.
-
----
-
-## 👤 Author
-
-**Eliot Mortimore**
-Moscow, Idaho
-[github.com/eliotmortimore](https://github.com/eliotmortimore)
+Based on a Python console application, converted to a web-based interactive experience with enhanced visualization and user interface.
